@@ -1,0 +1,223 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+ "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en" dir="ltr">
+<!--
+Specifying the doctype DTD URL causes IE to render in standards mode.
+See http://msdn.microsoft.com/en-us/library/ms535242.aspx
+-->
+
+<head>
+  <title>Bluemix Infra. HTTP ping</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="This site allows you to perform an HTTP ping to measure the network latency from your browser to the various Amazon Web Services&trade; datacenters around the world.">
+  <link rel="stylesheet" href="stylesheets/style.css?v=2" type="text/css">
+
+</head>
+<body>
+
+<div id=page>
+
+<div id=title>
+  <h1>Bluemix Infra. HTTP ping</h1>
+</div>
+
+<div id=content>
+
+<p><a href="http://www.ibm.com/bluemix/">IBM Cloud&trade;</a> are
+available around the world.  Click the button below to estimate the
+latency from your browser to each IBM Cloud&trade; location.</p>
+
+<table id="pinger">
+    <tr>
+        <th>Datacenter Location</th>
+        <th>Latency</th>
+    </tr>
+    <tr>
+        <td>U.S. West-San Jose</td>
+        <td class='latency' id='sjc04' endpoint='http://speedtest.sjc04.softlayer.com/'>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>U.S. West-Seattle</td>
+        <td class='latency' id='sea01' endpoint='http://speedtest.sea01.softlayer.com/'>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>U.S. East-Washington D.C.</td>
+        <td class='latency'  id='wdc07' endpoint='http://speedtest.wdc07.softlayer.com/'>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>U.S. South-Houston</td>
+        <td class='latency'  id='hou02' endpoint='http://speedtest.hou02.softlayer.com/'>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>U.S. South-Dallas</td>
+        <td class='latency'  id='dal13' endpoint='http://speedtest.dal13.softlayer.com/'>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>Canada-Montreal</td>
+        <td class='latency'  id='mon01' endpoint='http://speedtest.mon01.softlayer.com/'>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>Canada-Toronto</td>
+        <td class='latency'  id='tor01' endpoint='http://speedtest.tor01.softlayer.com/'>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>S.A.-San Polo</td>
+        <td class='latency'  id='sao01' endpoint='http://speedtest.sao01.softlayer.com/'>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>S.A.-Mexico</td>
+        <td class='latency'  id='mex01' endpoint='http://speedtest.mex01.softlayer.com/'>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>EU-Amerstadam</td>
+        <td class='latency'  id='ams03' endpoint='http://speedtest.ams03.softlayer.com/'>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>EU-Frankfurt</td>
+        <td class='latency'  id='fra02' endpoint='http://speedtest.fra02.softlayer.com/'>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>EU-London</td>
+        <td class='latency'  id='lon06' endpoint='http://speedtest.lon06.softlayer.com/'>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>EU-Milan</td>
+        <td class='latency'  id='mil01' endpoint='http://speedtest.mil01.softlayer.com/'>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>EU-Oslo</td>
+        <td class='latency'  id='osl01' endpoint='http://speedtest.osl01.softlayer.com/'>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>EU-Paris</td>
+        <td class='latency'  id='par01' endpoint='http://speedtest.par01.softlayer.com/'>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>ASIA-Chennai</td>
+        <td class='latency'  id='che01' endpoint='http://speedtest.che01.softlayer.com/'>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>ASIA-Hong Kong</td>
+        <td class='latency'  id='hkg02' endpoint='http://speedtest.hkg02.softlayer.com/'>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>ASIA-Seoul</td>
+        <td class='latency'  id='seo01' endpoint='http://speedtest.seo01.softlayer.com/'>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>ASIA-Singapore</td>
+        <td class='latency'  id='sng01' endpoint='http://speedtest.sng01.softlayer.com/'>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>ASIA-Tokyo</td>
+        <td class='latency'  id='tok02' endpoint='http://speedtest.tok02.softlayer.com/'>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>AP-Melbourne</td>
+        <td class='latency'  id='mel01' endpoint='http://speedtest.mel01.softlayer.com/'>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>AP-Sydney</td>
+        <td class='latency'  id='syd04' endpoint='http://speedtest.syd04.softlayer.com/'>&nbsp;</td>
+    </tr>
+    <tr>
+        <td id='imageCell'></td>
+        <td><input type='submit' id='pingbutton' value="     HTTP Ping     "></td>
+    </tr>
+</table>
+
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+
+<script type="text/javascript">
+
+var pingButton = $("#pingbutton");
+
+function disablePingButton() {
+    pingButton.attr("disabled", "disabled");
+};
+
+function enablePingButton() {
+    pingButton.removeAttr("disabled");
+};
+
+// http://stackoverflow.com/questions/1403888/get-url-parameter-with-jquery
+function getURLParameter(name) {
+    var regex = new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)');
+    var matches = regex.exec(location.search);
+    if (matches == null) {
+        return null;
+    }
+    var value = matches[1];
+    var value = value.replace(/\+/g, '%20');
+    return decodeURIComponent(value);
+}
+
+$(document).ready(function() {
+    $("#pingbutton").click(pingButtonClicked);
+    if (getURLParameter("run")) {
+        $("#pingbutton").click();
+    }
+});
+
+function pingButtonClicked() {
+    disablePingButton();
+    var latencyBoxes = $(".latency").toArray();
+    latencyBoxes.reverse();
+      doNextBox(latencyBoxes);
+}
+
+function doNextBox(latencyBoxes) {
+    var box = latencyBoxes.pop();
+    if (box) {
+        var region = box.id;
+        var endpoint = box.getAttribute("endpoint");
+        step1_connect(box, region, endpoint, latencyBoxes);
+    } else {
+        enablePingButton();
+    }
+}
+
+var imageCell = $("#imageCell")
+function ping_endpoint(endpoint, onComplete) {
+    var randomString = Math.floor(Math.random()*0xFFFFFFFFFFFFFFFF).toString(36);
+    var targetUrl = endpoint + "ping?x=" + randomString;
+    imageCell.empty();
+    imageCell.html("<img id='pingImage' style='display: none'>");
+    var pingImage = $("#pingImage");
+    pingImage.error(onComplete);
+    pingImage.attr("src", targetUrl);
+}
+
+function step1_connect(box, region, endpoint, latencyBoxes) {
+    $(box).html("connecting");
+    ping_endpoint(endpoint, function() { step2_ping(box, region, endpoint, latencyBoxes); });
+}
+
+function currentTimeMillis() {
+    return (new Date()).getTime();
+}
+
+function step2_ping(box, region, endpoint, latencyBoxes) {
+    $(box).html("pinging");
+    var startTime = currentTimeMillis();
+    ping_endpoint(endpoint, function() { step3_finish(startTime, box, region, endpoint, latencyBoxes); });
+}
+
+function step3_finish(startTime, box, region, endpoint, latencyBoxes) {
+    var endTime = currentTimeMillis();
+    var elapsed = endTime - startTime;
+    var resultText = elapsed.toString() + " ms";
+    $(box).html(resultText);
+    doNextBox(latencyBoxes);
+}
+
+</script>
+
+</div>
+
+<div id="footer">
+  <p>Copyright &copy; 2010-2017 Michael Leonhard</p>
+</div>
+
+</body>

@@ -1,0 +1,21 @@
+<html>
+<head>
+
+</head>
+
+<body>
+
+<div id="msg"></div>
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/ping.js"></script>
+<script>
+$.ping({
+url : 'http://speedtest.hkg02.softlayer.com/', 
+beforePing : function(){$('#msg').html('')},
+afterPing : function(ping){$('#msg').html(ping)}, 
+interval : 1
+});
+</script>
+
+</body>
+</html>
