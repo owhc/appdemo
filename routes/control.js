@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
             var data = rows;
     
             // use index.ejs
-            res.render('index', { title: 'Datacenter Location', data: data});
+            res.render('index', { title: 'Bluemix Infra. HTTP ping', data: data});
         });
     
     });
