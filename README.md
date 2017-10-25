@@ -1,2 +1,2 @@
-# appdemo
-appdemo
+# IBM Cloud - IaaS endpoints ping
+
