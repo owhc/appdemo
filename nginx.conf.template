@@ -1,0 +1,16 @@
+upstream ${NGINX_HOST} {
+    ## Can be connect with "composingdockerenvironments_default" network
+    # composingdockerenvironments_web_1
+    server node:3000;
+}
+
+
+# NGINX listening on 80 and using the upstream above
+server {
+    server_name ${NGINX_HOST};
+    listen ${NGINX_PORT} ;
+    access_log /var/log/nginx/access.log;
+    location / {
+        proxy_pass http://${NGINX_HOST};
+    }
+}
