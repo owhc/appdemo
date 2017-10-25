@@ -1,3 +1,4 @@
+#
 upstream ${NGINX_HOST} {
     ## Can be connect with "composingdockerenvironments_default" network
     # composingdockerenvironments_web_1
