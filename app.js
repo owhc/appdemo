@@ -22,7 +22,7 @@ var routes = require('./routes/control');
 var mysql = require("mysql");
 
 var con = mysql.createConnection({
-    host: "rm-3nsr0u2pou399ja4no.mysql.rds.aliyuncs.com",
+    host: "rm-3nsr0u2pou399ja4n.mysql.rds.aliyuncs.com",
     user: "dbadmin",
     password: "%TGBmju7",
     database: "ibmclouddb"
